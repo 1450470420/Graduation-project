@@ -1,0 +1,23 @@
+<view class="page" wx:if="{{earnings}}">
+  <view class="earnings-header">
+    <view class="balance-card">
+      <text class="label">可提现余额</text>
+      <text class="amount">¥{{earnings.balance}}</text>
+      <button class="withdraw-btn" bindtap="goWithdraw">立即提现</button>
+    </view>
+  </view>
+  <view class="stats-row card">
+    <view class="stat"><text class="sn">{{earnings.totalOrders}}</text><text class="sl">总接单</text></view>
+    <view class="stat"><text class="sn">{{earnings.completedOrders}}</text><text class="sl">已完成</text></view>
+    <view class="stat"><text class="sn">{{earnings.completeRate}}%</text><text class="sl">完成率</text></view>
+    <view class="stat"><text class="sn">{{earnings.goodRate}}%</text><text class="sl">好评率</text></view>
+  </view>
+  <view class="total-card card"><text>总收益：</text><text class="total">¥{{earnings.totalEarnings}}</text></view>
+  <view class="section-title">收益明细</view>
+  <view wx:if="{{earnings.records.length===0}}" style="text-align:center;padding:60rpx;color:#999;font-size:26rpx">☁️ 暂无收益记录</view>
+  <view class="record card" wx:for="{{earnings.records}}" wx:key="id">
+    <view><text class="remark">{{item.remark}}</text><text class="rtime">{{item.createTime}}</text></view>
+    <!-- 用amount正负判断收入/支出，而非业务type（type=2提现也是支出） -->
+    <text class="amount-sm {{item.amount>=0?'in':'out'}}">{{item.amount>=0?'+':''}}{{item.amount}}元</text>
+  </view>
+</view>

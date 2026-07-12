@@ -1,0 +1,27 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="empty">加载中...</view>
+
+  <view wx:elif="{{reviews.length===0}}" class="empty-state">
+    <text class="empty-icon">⭐</text>
+    <text class="empty-text">暂无评价记录</text>
+    <text class="empty-sub">完成订单后学生可以为您评价</text>
+  </view>
+
+  <view wx:else>
+    <view class="review-card card" wx:for="{{reviews}}" wx:key="id">
+      <!-- 学生信息行 -->
+      <view class="reviewer-row">
+        <image wx:if="{{item.studentAvatarUrl}}" class="s-avatar" src="{{item.studentAvatarUrl}}" mode="aspectFill"/>
+        <view wx:else class="s-avatar avatar-ph">👤</view>
+        <view class="s-info">
+          <text class="s-name">{{item.studentName||'匿名用户'}}</text>
+          <text class="s-date">{{item.dateStr}}</text>
+        </view>
+        <text class="stars">{{item.stars}}</text>
+      </view>
+      <!-- 评价内容 -->
+      <view wx:if="{{item.content}}" class="content">{{item.content}}</view>
+      <view wx:else class="content no-content">该用户未填写评价</view>
+    </view>
+  </view>
+</view>

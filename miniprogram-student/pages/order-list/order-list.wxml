@@ -1,0 +1,20 @@
+<view class="page">
+  <view class="tabs">
+    <view wx:for="{{tabs}}" wx:key="index" class="tab {{activeTab===index?'active':''}}" bindtap="changeTab" data-index="{{index}}">{{item}}</view>
+  </view>
+  <view wx:if="{{loading}}" class="loading"><text>加载中...</text></view>
+  <view wx:elif="{{orders.length===0}}" class="empty-state"><text class="empty-icon">📭</text><text>暂无订单</text></view>
+  <view class="order-item card" wx:for="{{orders}}" wx:key="id" bindtap="goDetail" data-id="{{item.id}}">
+    <view class="order-header">
+      <text class="stype">{{item.serviceType}}</text>
+      <text class="status s{{item.status}}">{{['待接单','待取件','配送中','已送达','已完成','已取消'][item.status]}}</text>
+    </view>
+    <view class="row"><text class="label">取件：</text><text class="val">{{item.pickupAddress}}</text></view>
+    <view class="row"><text class="label">送往：</text><text class="val">{{item.deliveryAddress}}</text></view>
+    <view class="row"><text class="label">物品：</text><text class="val">{{item.itemInfo}}</text></view>
+    <view class="order-footer">
+      <text class="reward">¥{{item.reward}}</text>
+      <text class="time">{{item.createTime}}</text>
+    </view>
+  </view>
+</view>

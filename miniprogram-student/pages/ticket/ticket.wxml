@@ -1,0 +1,23 @@
+<view class="container">
+  <button class="add-btn" bindtap="openAdd">📝 提交新工单</button>
+  <view class="ticket-item card" wx:for="{{tickets}}" wx:key="id">
+    <view class="ticket-header">
+      <text class="ticket-title">{{item.title}}</text>
+      <text class="ticket-status s{{item.status}}">{{['待处理','处理中','已关闭'][item.status]}}</text>
+    </view>
+    <text class="ticket-content">{{item.content}}</text>
+    <view class="ticket-reply" wx:if="{{item.reply}}"><text class="reply-label">📩 客服回复：</text><text>{{item.reply}}</text></view>
+    <text class="ticket-time">{{item.createTime}}</text>
+  </view>
+
+  <view class="modal-mask" wx:if="{{showAdd}}" bindtap="closeAdd"></view>
+  <view class="modal" wx:if="{{showAdd}}">
+    <view class="modal-title">提交工单</view>
+    <input class="input" value="{{form.title}}" bindinput="onInput" data-field="form.title" placeholder="请填写工单标题"/>
+    <textarea class="textarea" value="{{form.content}}" bindinput="onInput" data-field="form.content" placeholder="请详细描述您的问题..." auto-height/>
+    <view class="modal-btns">
+      <button bindtap="closeAdd" class="btn-cancel">取消</button>
+      <button bindtap="submit" class="btn-confirm">提交</button>
+    </view>
+  </view>
+</view>

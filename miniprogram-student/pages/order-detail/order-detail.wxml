@@ -1,0 +1,84 @@
+<view class="loading" wx:if="{{loading}}"><text>加载中...</text></view>
+<view class="error-state" wx:elif="{{loadError}}" style="text-align:center;padding:100rpx;color:#999">
+  <text style="font-size:60rpx;display:block;margin-bottom:20rpx">🚧</text>
+  <text style="display:block;margin-bottom:24rpx">订单加载失败</text>
+  <button style="background:#D32F2F;color:#fff;border-radius:40rpx;font-size:26rpx;padding:0 40rpx;height:72rpx;line-height:72rpx" bindtap="loadDetail">重新加载</button>
+</view>
+<view class="container" wx:elif="{{order}}">
+  <!-- 状态横幅 -->
+  <view class="status-banner s{{order.status}}">
+    <text class="status-icon">{{['⏳','📦','🚚','✅','✅','❌'][order.status]}}</text>
+    <view>
+      <text class="status-text">{{['待接单','待取件','配送中','已送达','已完成','已取消'][order.status]}}</text>
+      <text class="status-sub">订单号：{{order.orderNo}}</text>
+    </view>
+    <text class="reward-big">¥{{order.reward}}</text>
+  </view>
+
+  <!-- 地址信息 -->
+  <view class="card">
+    <view class="addr-row"><text class="addr-label">📍取件</text><text class="addr-val">{{order.pickupAddress}}</text></view>
+    <view class="divider"></view>
+    <view class="addr-row"><text class="addr-label">🏠送至</text><text class="addr-val">{{order.deliveryAddress}}</text></view>
+  </view>
+
+  <!-- 地图展示（有经纬度时展示） -->
+  <view class="card map-card" wx:if="{{order.pickupLat||order.deliveryLat||order.status===2}}">
+    <view class="map-title-row">
+      <text class="section-label">🗺️ 订单地图</text>
+      <text class="location-update" wx:if="{{locationUpdateText}}">{{locationUpdateText}}</text>
+      <text wx:if="{{order.status===2}}" class="live-badge">🟢 实时跟踪中</text>
+    </view>
+    <map class="order-map"
+      latitude="{{mapLat}}"
+      longitude="{{mapLng}}"
+      markers="{{mapMarkers}}"
+      polyline="{{mapPolyline}}"
+      scale="{{mapScale}}"
+      show-location
+    />
+    <text class="map-hint" wx:if="{{order.distance}}">📍 配送距离：{{order.distance}}km</text>
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="card">
+    <view class="info-row"><text class="info-label">服务类型</text><text class="info-val">{{order.serviceType}}</text></view>
+    <view class="info-row"><text class="info-label">物品信息</text><text class="info-val">{{order.itemInfo}}</text></view>
+    <view class="info-row" wx:if="{{order.note}}"><text class="info-label">备注</text><text class="info-val">{{order.note}}</text></view>
+    <view class="info-row"><text class="info-label">下单时间</text><text class="info-val">{{order.createTime}}</text></view>
+    <view class="info-row" wx:if="{{order.grabTime}}"><text class="info-label">接单时间</text><text class="info-val">{{order.grabTime}}</text></view>
+  </view>
+
+  <!-- 跑腿员信息 -->
+  <view class="card courier-card" wx:if="{{order.courierId}}">
+    <image class="courier-avatar" src="{{order.courierAvatar||'/assets/default-avatar.png'}}" mode="aspectFill"/>
+    <view class="courier-info">
+      <text class="courier-name">{{order.courierName}} 📱{{order.courierPhone}}</text>
+      <text class="courier-rep">信誉分：{{order.courierReputation}}分</text>
+    </view>
+    <button class="chat-btn" bindtap="goChat">💬 聊天</button>
+  </view>
+
+  <!-- 人脸验证提示（已送达状态显示） -->
+  <view class="card face-card" wx:if="{{order.status===3}}">
+    <view class="face-verify-header">
+      <text class="face-verify-title">🧑 人脸验证取货</text>
+      <text class="face-verify-badge {{faceVerified?'badge-pass':'badge-wait'}}">{{faceVerified?'✅ 已验证':'⏳ 待验证'}}</text>
+    </view>
+    <text class="face-verify-desc" wx:if="{{!faceVerified}}">为保障物品安全，确认收货前需进行人脸验证</text>
+    <text class="face-verify-desc" wx:if="{{faceVerified}}">人脸验证已通过，您可以确认收货</text>
+    <button wx:if="{{!faceVerified}}" class="btn-face" bindtap="startFaceVerify">
+      📷 打开摄像头验证
+    </button>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-area">
+    <button wx:if="{{order.status===0}}" class="btn-danger" bindtap="cancelOrder">取消订单</button>
+    <button wx:if="{{order.status===3}}" class="btn-primary" bindtap="confirmReceive">{{faceVerified?'确认收货':'人脸验证后确认收货'}}</button>
+    <button wx:if="{{order.status===4&&!order.hasEvaluated}}" class="btn-success" bindtap="goEvaluate">评价跑腿员</button>
+    <button wx:if="{{order.status===4&&order.hasEvaluated}}" class="btn-outline" disabled>✓ 已提交评价</button>
+    <button wx:if="{{order.status>0&&order.status<5}}" class="btn-outline" bindtap="goRefund">申请退款</button>
+    <button wx:if="{{order.status>0}}" class="btn-outline" bindtap="goComplaint">发起投诉</button>
+  </view>
+</view>

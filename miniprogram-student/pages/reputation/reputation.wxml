@@ -1,0 +1,41 @@
+<view class="page">
+  <!-- 信誉分卡片 -->
+  <view class="score-card">
+    <view class="score-circle">
+      <text class="score-num">{{score}}</text>
+      <text class="score-unit">分</text>
+    </view>
+    <view class="score-info">
+      <text class="score-level {{score>=90?'lv-a':score>=70?'lv-b':score>=60?'lv-c':'lv-d'}}">
+        {{score>=90?'信用优秀':score>=70?'信用良好':score>=60?'信用一般':'信用较差'}}
+      </text>
+      <text class="score-tip">信誉分低于60分将无法发布订单</text>
+    </view>
+  </view>
+
+  <!-- 积分规则说明 -->
+  <view class="rules-card">
+    <view class="rules-title">📋 积分规则</view>
+    <view class="rule-item"><text class="rule-icon green">+2</text><text>完成一笔订单</text></view>
+    <view class="rule-item"><text class="rule-icon green">+1</text><text>订单获得好评（4-5星）</text></view>
+    <view class="rule-item"><text class="rule-icon red">-3</text><text>订单获得差评（1-2星）</text></view>
+    <view class="rule-item"><text class="rule-icon red">-10</text><text>投诉被认定属实</text></view>
+    <view class="rule-item"><text class="rule-icon red">-5</text><text>恶意取消订单</text></view>
+  </view>
+
+  <!-- 变动记录 -->
+  <view class="section-title">变动记录</view>
+  <view wx:if="{{loading}}" class="loading"><text>加载中...</text></view>
+  <view wx:elif="{{records.length===0}}" class="empty">
+    <text class="empty-icon">📭</text><text>暂无变动记录</text>
+  </view>
+  <view class="record-item" wx:for="{{records}}" wx:key="id">
+    <view class="record-left">
+      <text class="record-reason">{{item.reason||'信誉分变动'}}</text>
+      <text class="record-time">{{item.createTime}}</text>
+    </view>
+    <text class="record-score {{item.type===1?'income':'expense'}}">
+      {{item.type===1?'+':''}}{{item.changeScore}}分
+    </text>
+  </view>
+</view>

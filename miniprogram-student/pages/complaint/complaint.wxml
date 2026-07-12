@@ -1,0 +1,20 @@
+<view class="container">
+  <view class="card">
+    <view class="title">发起投诉</view>
+    <!-- 订单信息确认 -->
+    <view class="order-info" wx:if="{{orderNo}}" style="background:#FFF8E1;padding:12rpx 16rpx;border-radius:8rpx;margin-bottom:20rpx;font-size:24rpx;color:#555">
+      <text>订单：{{orderNo}}</text><text style="margin-left:20rpx">类型：{{serviceType}}</text>
+    </view>
+    <view class="form-item">
+      <text class="label">投诉类型</text>
+      <picker mode="selector" range="{{['超时','服务差','丢件','其他']}}" bindchange="changeType">
+        <view class="picker">{{type}} ▼</view>
+      </picker>
+    </view>
+    <view class="form-item">
+      <text class="label">投诉内容</text>
+      <textarea class="textarea" value="{{content}}" bindinput="onInput" data-field="content" placeholder="请详细描述您遇到的问题..." auto-height/>
+    </view>
+    <button class="submit-btn" bindtap="submit" disabled="{{loading}}">{{loading?'提交中...':'提交投诉'}}</button>
+  </view>
+</view>

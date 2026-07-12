@@ -1,0 +1,24 @@
+<!-- 学生端登录页 -->
+<view class="login-page">
+  <view class="login-header">
+    <text class="logo">🏃</text>
+    <text class="title">校园跑腿</text>
+    <text class="subtitle">学生端 · 快捷跑腿服务</text>
+  </view>
+  <view class="login-form card">
+    <view class="form-item">
+      <text class="label">👤 用户名/手机号</text>
+      <input class="input" value="{{username}}" bindinput="onUsernameInput" placeholder="请输入用户名或手机号" />
+    </view>
+    <view class="form-item">
+      <text class="label">🔒 密码</text>
+      <input class="input" value="{{password}}" bindinput="onPasswordInput" password placeholder="请输入密码" />
+    </view>
+    <button class="btn-primary" bindtap="handleLogin" disabled="{{loading}}">
+      {{loading ? '登录中...' : '立即登录'}}
+    </button>
+    <view class="go-register" bindtap="goRegister">
+      还没有账号？<text class="link">立即注册</text>
+    </view>
+  </view>
+</view>

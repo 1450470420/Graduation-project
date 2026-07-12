@@ -1,0 +1,15 @@
+.container{padding:20rpx}
+.card{background:#fff;border-radius:16rpx;padding:24rpx;margin-bottom:16rpx;box-shadow:0 2rpx 12rpx rgba(0,0,0,.06)}
+.ann-header{display:flex;justify-content:space-between;margin-bottom:12rpx}
+/* 全部 - 红色；学生专属 - 维持不变；跑腿员 - 绿色 */
+.ann-tag{background:#FFEBEE;color:#D32F2F;font-size:22rpx;padding:4rpx 16rpx;border-radius:20rpx}
+.ann-tag-student{background:#FFEBEE;color:#D32F2F}
+.ann-tag-courier{background:#E8F5E9;color:#2E7D32}
+.ann-time{font-size:22rpx;color:#999}.ann-title{font-size:30rpx;font-weight:600;color:#333}
+.empty-state{text-align:center;padding:100rpx;color:#999}.empty-icon{font-size:100rpx;display:block;margin-bottom:20rpx}
+.modal-mask{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:100}
+.modal{position:fixed;top:100rpx;left:30rpx;right:30rpx;background:#fff;border-radius:20rpx;padding:30rpx;z-index:101;max-height:80vh;display:flex;flex-direction:column}
+.modal-title{font-size:32rpx;font-weight:700;margin-bottom:8rpx}
+.modal-time{font-size:22rpx;color:#999;margin-bottom:20rpx}
+.modal-content{flex:1;font-size:28rpx;line-height:1.8;color:#555;max-height:500rpx}
+.close-btn{background:#D32F2F;color:#fff;border-radius:50rpx;margin-top:20rpx;text-align:center;}

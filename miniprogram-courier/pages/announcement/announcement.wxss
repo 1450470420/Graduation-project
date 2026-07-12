@@ -1,0 +1,4 @@
+.container{padding:20rpx}.card{background:#fff;border-radius:16rpx;padding:24rpx;margin-bottom:16rpx}
+.title{display:block;font-size:30rpx;font-weight:700;color:#333;margin-bottom:12rpx}
+.content{display:block;font-size:26rpx;color:#666;line-height:1.6;margin-bottom:12rpx}
+.time{display:block;font-size:22rpx;color:#999}

@@ -1,0 +1,26 @@
+<view class="container">
+  <!-- 平衡提示卡 -->
+  <view class="balance-tip-card">
+    <text class="btl">当前可提现余额</text>
+    <text class="bta">¥{{balance}}</text>
+  </view>
+  <view class="card">
+    <view class="form-title">申请提现</view>
+    <view class="fi"><text>提现金额(元)</text><input type="digit" value="{{amount}}" bindinput="onInput" data-field="amount" placeholder="最低50元"/></view>
+    <view class="fi"><text>收款方式</text>
+      <picker mode="selector" range="{{['微信','支付宝','银行卡']}}" bindchange="changeMethod">
+        <view class="picker">{{method}} ▼</view>
+      </picker>
+    </view>
+    <view class="fi"><text>收款账号</text><input value="{{accountInfo}}" bindinput="onInput" data-field="accountInfo" placeholder="请输入对应账号/卡号"/></view>
+    <button class="btn" bindtap="submit">提交提现申请</button>
+  </view>
+  <view class="section-title">提现记录</view>
+  <view class="record card" wx:for="{{records}}" wx:key="id">
+    <view class="rh"><text class="rm">{{item.paymentMethod}}</text><text class="status s{{item.status}}">{{['待审核','已通过','已驳回'][item.status]}}</text></view>
+    <text class="ra">¥{{item.amount}}</text>
+    <text class="rac">{{item.accountInfo}}</text>
+    <text class="rt">{{item.createTime}}</text>
+    <text class="rr" wx:if="{{item.adminRemark}}">备注：{{item.adminRemark}}</text>
+  </view>
+</view>

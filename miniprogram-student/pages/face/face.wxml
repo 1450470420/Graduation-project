@@ -1,0 +1,61 @@
+<view class="page">
+  <view class="face-header">
+    <text class="face-title">人脸识别认证</text>
+    <text class="face-desc">注册人脸后，确认收货时需要人脸验证，防止他人冒领您的物品</text>
+  </view>
+
+  <!-- 相机采集模式 -->
+  <view class="camera-card" wx:if="{{showCamera}}">
+    <view class="camera-tip-bar">
+      <text class="camera-tip">请将面部对准框内，保持正脸朝向摄像头</text>
+    </view>
+    <view class="camera-wrap">
+      <camera class="face-camera" device-position="front" flash="off" resolution="medium" bindinitdone="onCameraInitDone" binderror="onCameraError"/>
+      <view class="face-oval"></view>
+    </view>
+    <view class="camera-btns">
+      <button class="btn-cancel-cam" bindtap="closeCamera">取消</button>
+      <button class="btn-capture" bindtap="capturePhoto" disabled="{{uploading || !cameraReady}}">
+        {{uploading ? '处理中...' : '📸 拍照采集'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 未注册状态（非相机模式） -->
+  <view class="face-card" wx:if="{{!hasFace && !showCamera}}">
+    <view class="face-placeholder">
+      <text class="face-icon">🧑</text>
+      <text class="face-hint">暂未注册人脸</text>
+    </view>
+    <button class="btn-register" bindtap="openCamera">
+      📷 打开摄像头采集人脸
+    </button>
+    <view class="tips-card">
+      <text class="tips-title">采集要求：</text>
+      <text class="tip-item">1. 系统将直接打开前置摄像头</text>
+      <text class="tip-item">2. 确保光线充足，面部清晰可见</text>
+      <text class="tip-item">3. 请勿佩戴墨镜、口罩等遮挡物</text>
+      <text class="tip-item">4. 保持表情自然，正脸面对镜头</text>
+    </view>
+  </view>
+
+  <!-- 已注册状态 -->
+  <view class="face-card" wx:if="{{hasFace && !showCamera}}">
+    <view class="face-registered">
+      <view class="face-photo-wrap">
+        <image class="face-photo" src="{{facePhoto}}" mode="aspectFill"/>
+        <view class="face-badge">✅ 已注册</view>
+      </view>
+      <view class="face-status-info">
+        <text class="status-text">人脸已注册成功</text>
+        <text class="status-sub">确认收货时将自动进行人脸验证</text>
+      </view>
+    </view>
+    <button class="btn-reregister" bindtap="reRegister">🔄 重新采集人脸</button>
+  </view>
+
+  <view class="notice-card" wx:if="{{!showCamera}}">
+    <text class="notice-title">🔒 安全说明</text>
+    <text class="notice-text">您的人脸照片仅用于取货验证，严格保密，不会用于其他用途。确认收货时，系统会对比您注册的人脸照片和实时拍摄的照片，确保是本人操作，保障您的物品安全。</text>
+  </view>
+</view>

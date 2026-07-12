@@ -1,0 +1,12 @@
+<view class="page">
+  <view class="msg-item {{item.isRead?'read':'unread'}}" wx:for="{{messages}}" wx:key="id" bindtap="readMsg" data-id="{{item.id}}">
+    <view class="msg-icon">{{item.type==='order'?'📦':item.type==='announcement'?'📢':'🔔'}}</view>
+    <view class="msg-content">
+      <view class="msg-title">{{item.title}}</view>
+      <view class="msg-body">{{item.content}}</view>
+      <view class="msg-time">{{item.createTime}}</view>
+    </view>
+    <view class="unread-dot" wx:if="{{!item.isRead}}"></view>
+  </view>
+  <view wx:if="{{messages.length===0}}" class="empty-state"><text class="empty-icon">📭</text><text>暂无消息</text></view>
+</view>

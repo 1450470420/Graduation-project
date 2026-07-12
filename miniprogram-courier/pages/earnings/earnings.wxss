@@ -1,0 +1,13 @@
+.earnings-header{background:linear-gradient(135deg,#2E7D32,#43A047);padding:40rpx 30rpx}
+.balance-card{text-align:center;color:#fff}
+.label{display:block;font-size:26rpx;opacity:.85;margin-bottom:10rpx}
+.amount{display:block;font-size:72rpx;font-weight:700;margin-bottom:20rpx}
+.withdraw-btn{background:#fff;color:#2E7D32;border-radius:50rpx;font-size:28rpx;height:80rpx;line-height:80rpx;width:300rpx;text-align:center;padding:0}
+.stats-row{display:flex;justify-content:space-around;margin:20rpx}
+.stat{text-align:center}.sn{font-size:40rpx;font-weight:700;color:#2E7D32;display:block}.sl{font-size:22rpx;color:#666}
+.total-card{display:flex;justify-content:space-between;font-size:28rpx;margin:0 20rpx 20rpx}
+.total{color:#E53935;font-size:36rpx;font-weight:700}
+.section-title{font-size:28rpx;font-weight:700;padding:0 20rpx 10rpx;color:#333}
+.record{display:flex;justify-content:space-between;align-items:center;margin:0 20rpx 12rpx}
+.remark{font-size:26rpx;color:#333;display:block}.rtime{font-size:22rpx;color:#999}
+.amount-sm{font-size:30rpx;font-weight:700}.in{color:#2E7D32}.out{color:#E53935}

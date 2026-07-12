@@ -1,0 +1,16 @@
+<view class="chat-page">
+  <view class="poll-indicator">
+    <view class="poll-dot"></view>
+    <text class="poll-text">实时消息已开启</text>
+  </view>
+  <scroll-view scroll-y class="msg-list" scroll-into-view="{{scrollId}}" scroll-with-animation>
+    <view id="msg-{{item.id}}" class="msg-row {{item.senderId===myId?'self':'other'}}" wx:for="{{messages}}" wx:key="id">
+      <view class="msg-bubble">{{item.content}}</view>
+      <text class="msg-time">{{item.createTime?item.createTime.slice(11,16):''}}</text>
+    </view>
+  </scroll-view>
+  <view class="input-bar">
+    <input class="chat-input" value="{{content}}" bindinput="onInput" data-field="content" placeholder="输入消息..." confirm-type="send" bindconfirm="sendMsg"/>
+    <button class="send-btn" bindtap="sendMsg">发送</button>
+  </view>
+</view>

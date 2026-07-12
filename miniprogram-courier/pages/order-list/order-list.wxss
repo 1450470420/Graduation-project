@@ -1,0 +1,9 @@
+.tabs{display:flex;background:#fff;border-bottom:2rpx solid #f0f0f0}
+.tab{flex:1;text-align:center;padding:24rpx;font-size:26rpx;color:#666}
+.tab.active{color:#2E7D32;border-bottom:4rpx solid #2E7D32;font-weight:700}
+.card{margin:20rpx}.oh{display:flex;justify-content:space-between;margin-bottom:14rpx}
+.stype{background:#E8F5E9;color:#2E7D32;font-size:22rpx;padding:4rpx 16rpx;border-radius:20rpx}
+.reward{color:#E53935;font-size:36rpx;font-weight:700}
+.row{display:flex;gap:12rpx;margin-bottom:10rpx;font-size:26rpx}.l{color:#999;white-space:nowrap}.v{flex:1;color:#333}
+.status-row{display:flex;justify-content:space-between;margin-top:14rpx;padding-top:14rpx;border-top:1rpx solid #f5f5f5}
+.s0,.s1{color:#FF9800}.s2{color:#9C27B0}.s3,.s4{color:#2E7D32}.s5{color:#9E9E9E}.t{font-size:22rpx;color:#999}

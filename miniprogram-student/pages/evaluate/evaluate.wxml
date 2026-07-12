@@ -1,0 +1,11 @@
+<view class="container">
+  <view class="card">
+    <view class="title">为跑腿员打分</view>
+    <view class="stars">
+      <text wx:for="{{[1,2,3,4,5]}}" wx:key="*this" class="star {{item<=rating?'active':''}}" bindtap="changeRating" data-star="{{item}}">★</text>
+    </view>
+    <view class="rating-text">{{['','很差','较差','一般','不错','非常棒'][rating]}}</view>
+    <textarea class="textarea" value="{{content}}" bindinput="onInput" data-field="content" placeholder="请填写对本次跑腿服务的评价..." auto-height/>
+    <button class="submit-btn" bindtap="submit" disabled="{{loading}}">{{loading?'提交中...':'提交评价'}}</button>
+  </view>
+</view>

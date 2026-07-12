@@ -1,0 +1,30 @@
+<view class="page">
+  <view class="header" wx:if="{{userInfo}}">
+    <image wx:if="{{userInfo.avatarUrl}}" class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"/>
+    <view wx:else class="avatar avatar-ph">👤</view>
+    <view class="info">
+      <text class="name">{{userInfo.realName||userInfo.username}}</text>
+      <text class="phone">📱 {{userInfo.phone}}</text>
+      <text class="rep">⭐ 信誉分 {{userInfo.reputation}}</text>
+    </view>
+    <text class="certified" wx:if="{{userInfo.courierStatus===2}}">✅ 认证跑腿员</text>
+  </view>
+  <view class="menu-section card">
+    <view class="menu-item" bindtap="openEdit"><text class="mi">✏️</text><text class="mt">编辑资料</text><text class="arrow">></text></view>
+    <view class="menu-item" bindtap="goReviews"><text class="mi">⭐</text><text class="mt">我的评价</text><text class="arrow">></text></view>
+    <view class="menu-item" bindtap="goEarnings"><text class="mi">💰</text><text class="mt">收益中心</text><text class="arrow">></text></view>
+    <view class="menu-item" bindtap="goApplication"><text class="mi">📝</text><text class="mt">入驻申请</text><text class="arrow">></text></view>
+    <view class="menu-item" bindtap="goAnnouncement"><text class="mi">📢</text><text class="mt">平台公告</text><text class="arrow">></text></view>
+    <view class="menu-item" bindtap="goMessage"><text class="mi">🔔</text><text class="mt">消息中心</text><text class="arrow">></text></view>
+  </view>
+  <view class="reviews-section" wx:if="{{reviews.length>0}}">
+    <view class="section-title">最近评价</view>
+    <view class="review-item card" wx:for="{{reviews}}" wx:key="id">
+      <view class="rev-header"><text class="stars">{{item.stars}}</text><text class="rt">{{item.createTime.slice(0,10)}}</text></view>
+      <text class="rev-content">{{item.content}}</text>
+    </view>
+  </view>
+  <button class="logout-btn" bindtap="logout">退出登录</button>
+
+</view>
+

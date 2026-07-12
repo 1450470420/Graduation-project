@@ -1,0 +1,13 @@
+.header{background:linear-gradient(135deg,#2E7D32,#43A047);padding:40rpx 30rpx;display:flex;align-items:center;gap:24rpx;color:#fff}
+.avatar{width:100rpx;height:100rpx;border-radius:50%;border:4rpx solid rgba(255,255,255,.5)}
+.avatar-ph{display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.3);font-size:44rpx;flex-shrink:0}
+.name{font-size:34rpx;font-weight:700;display:block}.phone,.rep{font-size:24rpx;opacity:.85;display:block;margin-top:6rpx}
+.certified{background:rgba(255,255,255,.2);padding:6rpx 16rpx;border-radius:30rpx;font-size:22rpx;white-space:nowrap}
+.menu-section{margin:20rpx}
+.menu-item{display:flex;align-items:center;gap:16rpx;padding:24rpx 0;border-bottom:1rpx solid #f5f5f5}
+.mi{font-size:40rpx}.mt{flex:1;font-size:30rpx;color:#333}.arrow{color:#ccc}
+.section-title{font-size:28rpx;font-weight:700;padding:0 20rpx 10rpx;color:#333}
+.review-item{margin:0 20rpx 12rpx}.rev-header{display:flex;justify-content:space-between;margin-bottom:8rpx}
+.stars{color:#FF9800;font-size:28rpx}.rt{font-size:22rpx;color:#999}
+.rev-content{font-size:26rpx;color:#555}
+.logout-btn{margin:20rpx 40rpx;background:#fff;color:#E53935;border:2rpx solid #E53935;border-radius:50rpx;height:90rpx;line-height:90rpx;font-size:30rpx;text-align:center;padding:0}

@@ -1,0 +1,6 @@
+.container{padding:20rpx}.card{background:#fff;border-radius:16rpx;padding:32rpx}
+.title{font-size:32rpx;font-weight:700;margin-bottom:24rpx}
+.form-item{margin-bottom:24rpx}.label{display:block;font-size:28rpx;color:#666;margin-bottom:12rpx}
+.picker{border:2rpx solid #eee;border-radius:8rpx;padding:16rpx;font-size:28rpx;color:#D32F2F}
+.textarea{border:2rpx solid #eee;border-radius:8rpx;padding:16rpx;font-size:28rpx;min-height:160rpx;width:100%;box-sizing:border-box}
+.submit-btn{background:#D32F2F;color:#fff;border-radius:50rpx;height:90rpx;line-height:90rpx;font-size:30rpx;text-align:center;}

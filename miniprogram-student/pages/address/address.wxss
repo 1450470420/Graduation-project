@@ -1,0 +1,17 @@
+.container{padding:20rpx}
+.card{background:#fff;border-radius:16rpx;padding:24rpx;margin-bottom:16rpx;box-shadow:0 2rpx 12rpx rgba(0,0,0,.06)}
+.addr-main{display:flex;align-items:center;gap:12rpx;margin-bottom:10rpx}
+.addr-label{background:#FFEBEE;color:#D32F2F;font-size:22rpx;padding:4rpx 16rpx;border-radius:20rpx}
+.default-tag{background:#E8F5E9;color:#4CAF50;font-size:22rpx;padding:4rpx 16rpx;border-radius:20rpx}
+.addr-text{font-size:28rpx;color:#333;margin-bottom:16rpx;display:block}
+.addr-actions{text-align:right}.del-btn{color:#F44336;font-size:26rpx;text-align:center;}
+.add-btn{background:#D32F2F;color:#fff;border-radius:50rpx;height:90rpx;line-height:90rpx;font-size:30rpx;margin-top:20rpx;text-align:center;}
+.modal-mask{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:100}
+.modal{position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:24rpx 24rpx 0 0;padding:30rpx;z-index:101}
+.modal-title{font-size:32rpx;font-weight:700;text-align:center;margin-bottom:24rpx}
+.form-item{display:flex;align-items:flex-start;gap:16rpx;margin-bottom:20rpx;font-size:28rpx}
+.picker{border:2rpx solid #eee;border-radius:8rpx;padding:12rpx 16rpx;color:#D32F2F;flex:1}
+.textarea{border:2rpx solid #eee;border-radius:8rpx;padding:12rpx;font-size:28rpx;flex:1;min-height:80rpx}
+.modal-btns{display:flex;gap:20rpx;margin-top:24rpx}
+.btn-cancel{flex:1;border:2rpx solid #ddd;border-radius:50rpx;color:#666;height:80rpx;line-height:80rpx;text-align:center;}
+.btn-confirm{flex:1;background:#D32F2F;color:#fff;border-radius:50rpx;height:80rpx;line-height:80rpx;text-align:center;}

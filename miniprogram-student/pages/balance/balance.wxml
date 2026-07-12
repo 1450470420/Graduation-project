@@ -1,0 +1,25 @@
+<view class="page">
+  <!-- 余额卡片 -->
+  <view class="balance-card">
+    <text class="balance-label">账户余额（元）</text>
+    <text class="balance-amount">¥{{balance}}</text>
+    <text class="balance-tip">余额为平台奖励及退款所得，不可主动充值</text>
+  </view>
+
+  <!-- 流水记录 -->
+  <view class="section-title">流水记录</view>
+  <view wx:if="{{loading}}" class="loading"><text>加载中...</text></view>
+  <view wx:elif="{{records.length===0}}" class="empty">
+    <text class="empty-icon">📭</text>
+    <text>暂无流水记录</text>
+  </view>
+  <view class="record-item" wx:for="{{records}}" wx:key="id">
+    <view class="record-left">
+      <text class="record-remark">{{item.remark||'余额变动'}}</text>
+      <text class="record-time">{{item.createTime}}</text>
+    </view>
+    <text class="record-amount {{item.amount>0?'income':'expense'}}">
+      {{item.amount>0?'+':''}}{{item.amount}}元
+    </text>
+  </view>
+</view>

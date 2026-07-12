@@ -1,0 +1,9 @@
+<view class="page"><view class="header"><text class="logo">🏃‍♂️</text><text class="title">跑腿员注册</text></view>
+<view class="card">
+  <view class="fi"><text>用户名</text><input value="{{username}}" bindinput="onInput" data-field="username" placeholder="请设置用户名"/></view>
+  <view class="fi"><text>手机号</text><input value="{{phone}}" bindinput="onInput" data-field="phone" type="number" placeholder="请输入手机号"/></view>
+  <view class="fi"><text>密码</text><input value="{{password}}" bindinput="onInput" data-field="password" password placeholder="至少6位密码"/></view>
+  <view class="fi"><text>确认密码</text><input value="{{confirmPwd}}" bindinput="onInput" data-field="confirmPwd" password placeholder="再次输入密码"/></view>
+  <button class="btn" bindtap="register" disabled="{{loading}}">{{loading?'注册中...':'注册成为跑腿员'}}</button>
+  <view class="back" bindtap="goLogin">已有账号，去登录</view>
+</view></view>

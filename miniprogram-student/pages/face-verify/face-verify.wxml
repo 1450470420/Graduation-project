@@ -1,0 +1,26 @@
+<view class="verify-page">
+  <view class="tip-bar">
+    <text class="tip-text">{{devtoolsMode ? '开发者工具下请从相册选图调试' : '请将面部对准椭圆框内，保持正脸'}}</text>
+  </view>
+  <view class="camera-area" wx:if="{{!devtoolsMode}}">
+    <camera class="verify-camera" device-position="front" flash="off" resolution="medium" bindinitdone="onCameraInitDone" binderror="onCameraError"/>
+    <view class="oval-mask"></view>
+    <view class="scan-line" wx:if="{{!capturing}}"></view>
+  </view>
+  <view class="camera-devtools" wx:if="{{devtoolsMode}}">
+    <text class="devtools-text">模拟器无法稳定调用摄像头，请选择本地人脸照片进行验证调试。</text>
+    <button class="btn-debug" bindtap="chooseDebugPhoto" disabled="{{capturing}}">{{capturing ? '验证中...' : '选择照片验证'}}</button>
+  </view>
+  <view class="bottom-bar">
+    <view class="order-info">
+      <text class="order-label">订单验证</text>
+      <text class="order-no">{{orderNo}}</text>
+    </view>
+    <button class="btn-snap" bindtap="capture" disabled="{{capturing || !cameraReady}}" wx:if="{{!devtoolsMode}}">
+      <view class="snap-ring">
+        <view class="snap-inner {{capturing?'snap-loading':''}}"></view>
+      </view>
+    </button>
+    <text class="snap-hint" wx:if="{{!devtoolsMode}}">{{capturing ? '验证中...' : '点击拍照验证'}}</text>
+  </view>
+</view>

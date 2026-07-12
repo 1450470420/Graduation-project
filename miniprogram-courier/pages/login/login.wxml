@@ -1,0 +1,9 @@
+<view class="login-page">
+  <view class="header"><text class="logo">🏃‍♂️</text><text class="title">跑腿员登录</text><text class="sub">校园跑腿 · 灵活接单赚钱</text></view>
+  <view class="card">
+    <view class="fi"><text>用户名</text><input value="{{username}}" bindinput="onUsernameInput" placeholder="请输入用户名"/></view>
+    <view class="fi"><text>密码</text><input value="{{password}}" bindinput="onPasswordInput" password placeholder="请输入密码"/></view>
+    <button class="btn" bindtap="handleLogin" disabled="{{loading}}">{{loading?'登录中...':'立即登录'}}</button>
+    <view class="reg" bindtap="goRegister">还没有账号？注册成为跑腿员</view>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+.chat-page{display:flex;flex-direction:column;height:100vh;background:#f5f5f5}
+.poll-indicator{display:flex;align-items:center;justify-content:center;gap:8rpx;padding:8rpx 0;background:#E8F5E9}
+.poll-dot{width:12rpx;height:12rpx;border-radius:50%;background:#4CAF50;animation:blink 1.5s infinite}
+.poll-text{font-size:22rpx;color:#2E7D32}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.msg-list{flex:1;padding:20rpx}
+.msg-row{display:flex;flex-direction:column;margin-bottom:20rpx}
+.msg-row.self{align-items:flex-end}.msg-row.other{align-items:flex-start}
+.msg-bubble{background:#fff;padding:16rpx 24rpx;border-radius:18rpx;max-width:500rpx;font-size:28rpx;color:#333}
+.msg-row.self .msg-bubble{background:#D32F2F;color:#fff}
+.msg-time{font-size:20rpx;color:#999;margin-top:6rpx}
+.input-bar{display:flex;gap:16rpx;padding:16rpx;background:#fff;border-top:1rpx solid #f0f0f0}
+.chat-input{flex:1;border:2rpx solid #eee;border-radius:50rpx;padding:0 24rpx;height:72rpx;line-height:72rpx;font-size:28rpx}
+.send-btn{background:#D32F2F;color:#fff;border-radius:50rpx;font-size:26rpx;padding:0 32rpx;height:72rpx;line-height:72rpx;text-align:center;}

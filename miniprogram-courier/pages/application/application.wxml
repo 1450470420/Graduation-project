@@ -1,0 +1,21 @@
+<view class="container">
+  <!-- 已有申请则显示状态 -->
+  <view class="status-card card" wx:if="{{app}}">
+    <view class="sh">申请状态</view>
+    <view class="status s{{app.status}}">{{['待审核','已通过','已驳回'][app.status]}}</view>
+    <text wx:if="{{app.rejectReason}}" class="reason">驳回原因：{{app.rejectReason}}</text>
+    <text wx:if="{{app.status===1}}" class="ok-tip">🎉 恭喜您已成为认证跑腿员！可以开始接单了</text>
+    <!-- 审核通过后引导到接单大厅 -->
+    <button wx:if="{{app.status===1}}" class="start-btn" bindtap="goOrderHall">🚀 去接单大厅</button>
+  </view>
+  <!-- 申请表单 -->
+  <view class="card" wx:if="{{!app||app.status===2}}">
+    <view class="form-title">填写入驻申请</view>
+    <view class="fi"><text>真实姓名</text><input value="{{form.realName}}" bindinput="onInput" data-field="form.realName" placeholder="请输入真实姓名"/></view>
+    <view class="fi"><text>学号</text><input value="{{form.studentId}}" bindinput="onInput" data-field="form.studentId" placeholder="请输入学号"/></view>
+    <view class="fi"><text>联系电话</text><input value="{{form.phone}}" bindinput="onInput" data-field="form.phone" type="number" placeholder="请输入手机号"/></view>
+    <view class="fi"><text>身份证号</text><input value="{{form.idCardNo}}" bindinput="onInput" data-field="form.idCardNo" placeholder="请输入身份证号"/></view>
+    <view class="fi"><text>申请备注</text><textarea class="ta" value="{{form.remark}}" bindinput="onInput" data-field="form.remark" placeholder="可填写您的自我介绍或申请理由" auto-height/></view>
+    <button class="btn" bindtap="submit" disabled="{{loading}}">{{loading?'提交中...':'提交申请'}}</button>
+  </view>
+</view>

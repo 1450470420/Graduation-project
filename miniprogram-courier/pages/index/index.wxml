@@ -1,0 +1,47 @@
+<view class="page">
+  <!-- 顶部状态栏 -->
+  <view class="courier-status">
+    <view class="status-left">
+      <image wx:if="{{userInfo.avatarUrl}}" class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"/>
+      <view wx:else class="avatar avatar-ph">👤</view>
+      <view><text class="name">{{userInfo.realName||userInfo.username}}</text>
+        <view wx:if="{{userInfo.courierStatus===2}}"><text class="badge-ok">✅ 认证跑腿员</text></view>
+        <view wx:elif="{{userInfo.courierStatus===1}}"><text class="badge-warn">🕐 审核中，请耐心等待</text></view>
+        <view wx:else><text class="badge-warn">⚠️ 未认证，点击申请入驻</text></view>
+      </view>
+    </view>
+    <!-- 未申请（status=0）显示申请按钮；待审核（status=1）显示待审核提示；驳回（status=3）可重新申请 -->
+    <button wx:if="{{userInfo.courierStatus===0||userInfo.courierStatus===3}}" class="apply-btn" bindtap="goApply">申请入驻</button>
+    <view wx:elif="{{userInfo.courierStatus===1}}" class="pending-tip">‣ 审核中</view>
+  </view>
+
+  <!-- 类型筛选 -->
+  <view class="filter-bar">
+    <picker mode="selector" range="{{['全部类型','代取快递','代买','代送']}}" bindchange="changeType">
+      <view class="filter-btn">服务类型 ▼</view>
+    </picker>
+    <text class="order-count">{{orders.length}}个订单</text>
+    <text class="refresh" bindtap="loadOrders">刷新 🔄</text>
+  </view>
+
+  <!-- 订单列表 -->
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+  <view wx:elif="{{orders.length===0}}" class="empty-state">
+    <text class="empty-icon">📬</text>
+    <text>暂无可接订单</text>
+    <text class="empty-sub">可以稍后点击刷新按钮查看最新订单</text>
+    <button class="refresh-btn" bindtap="loadOrders">🔄 刷新一下</button>
+  </view>
+  <view class="order-card card" wx:for="{{orders}}" wx:key="id">
+    <view class="order-head">
+      <text class="stype">{{item.serviceType}}</text>
+      <text class="reward">¥{{item.reward}}</text>
+    </view>
+    <view class="addr-row"><text class="label">📍取件</text><text class="val">{{item.pickupAddress}}</text></view>
+    <view class="addr-row"><text class="label">🏠送达</text><text class="val">{{item.deliveryAddress}}</text></view>
+    <view class="item-row"><text class="label">📦物品</text><text class="val">{{item.itemInfo}}</text></view>
+    <view class="student-row"><text class="student-name">👤 {{item.studentName}}</text><text class="time">{{item.createTime}}</text></view>
+    <button class="grab-btn" bindtap="grabOrder" data-id="{{item.id}}" wx:if="{{userInfo.courierStatus===2}}">🚀 立即接单</button>
+    <view wx:else class="no-auth">请先完成跑腿员认证后接单</view>
+  </view>
+</view>

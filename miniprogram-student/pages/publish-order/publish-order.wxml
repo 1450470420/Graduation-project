@@ -1,0 +1,56 @@
+<view class="container">
+  <view class="card">
+    <view class="form-title">📦 服务类型</view>
+    <picker mode="selector" range="{{['代取快递','代买','代送']}}" bindchange="changeType">
+      <view class="picker-val">{{serviceType}} ▼</view>
+    </picker>
+    <view class="divider"></view>
+
+    <!-- 地址簿快捷选择 -->
+    <view wx:if="{{addresses.length>0}}" class="addr-shortcuts">
+      <text class="addr-tip">📍 常用地址快选：</text>
+      <scroll-view scroll-x class="addr-scroll">
+        <view class="addr-chip" wx:for="{{addresses}}" wx:key="id" bindtap="pickPickup" data-addr="{{item.address}}">[取]　{{item.label}}</view>
+        <view class="addr-chip addr-chip-delivery" wx:for="{{addresses}}" wx:key="id" bindtap="pickDelivery" data-addr="{{item.address}}">[送]　{{item.label}}</view>
+      </scroll-view>
+    </view>
+
+    <!-- 取件地址 + 地图选点 -->
+    <view class="addr-row-title">
+      <view class="form-title">📍 取件地址</view>
+      <view class="map-btn" bindtap="choosePickupLocation">🗺️ 地图选点</view>
+    </view>
+    <textarea class="textarea" value="{{pickupAddress}}" bindinput="onInput" data-field="pickupAddress" placeholder="手动输入或点击地图选点（如：东校区菜鸟驿站）" auto-height/>
+    <view class="divider"></view>
+
+    <!-- 送达地址 + 地图选点 -->
+    <view class="addr-row-title">
+      <view class="form-title">🏠 送达地址</view>
+      <view class="map-btn" bindtap="chooseDeliveryLocation">🗺️ 地图选点</view>
+    </view>
+    <textarea class="textarea" value="{{deliveryAddress}}" bindinput="onInput" data-field="deliveryAddress" placeholder="手动输入或点击地图选点（如：学生公寕1号楼301室）" auto-height/>
+
+    <!-- 选完两点后展示地图预览 -->
+    <view wx:if="{{showMap}}" class="map-preview-section">
+      <view class="map-preview-title">🗺️ 路线预览</view>
+      <map class="map-preview"
+        latitude="{{mapLat}}"
+        longitude="{{mapLng}}"
+        markers="{{mapMarkers}}"
+        polyline="{{mapPolyline}}"
+        scale="14"
+        show-location
+      />
+    </view>
+    <view class="divider"></view>
+    <view class="form-title">📋 物品信息</view>
+    <textarea class="textarea" value="{{itemInfo}}" bindinput="onInput" data-field="itemInfo" placeholder="请描述物品信息（如：京东快递，单号JD123456）" auto-height/>
+    <view class="divider"></view>
+    <view class="form-title">💰 赏金金额（元）</view>
+    <input class="input" type="digit" value="{{reward}}" bindinput="onInput" data-field="reward" placeholder="请输入赏金，建议3-10元"/>
+    <view class="divider"></view>
+    <view class="form-title">📝 备注（可选）</view>
+    <textarea class="textarea" value="{{note}}" bindinput="onInput" data-field="note" placeholder="如有特殊要求请填写" auto-height/>
+  </view>
+  <button class="submit-btn" bindtap="submitOrder" disabled="{{loading}}">{{loading?'发布中...':'立即发布'}}</button>
+</view>

@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="ann-item card" wx:for="{{announcements}}" wx:key="id" bindtap="viewDetail" data-item="{{item}}">
+    <view class="ann-header">
+      <!-- WXML 不支持对象字面量属性访问，改用条件渲染 -->
+      <text class="ann-tag" wx:if="{{item.target==='all'}}">全部</text>
+      <text class="ann-tag ann-tag-student" wx:elif="{{item.target==='student'}}">学生专属</text>
+      <text class="ann-tag ann-tag-courier" wx:else>跑腿员</text>
+      <text class="ann-time">{{item.createTime.slice(0,10)}}</text>
+    </view>
+    <text class="ann-title">{{item.title}}</text>
+  </view>
+  <view wx:if="{{announcements.length===0}}" class="empty-state">
+    <text class="empty-icon">📭</text><text>暂无公告</text>
+  </view>
+
+  <!-- 详情弹窗 -->
+  <view class="modal-mask" wx:if="{{selected}}" bindtap="closeDetail"></view>
+  <view class="modal" wx:if="{{selected}}">
+    <view class="modal-title">{{selected.title}}</view>
+    <view class="modal-time">{{selected.createTime}}</view>
+    <scroll-view scroll-y class="modal-content"><text>{{selected.content}}</text></scroll-view>
+    <button class="close-btn" bindtap="closeDetail">关闭</button>
+  </view>
+</view>

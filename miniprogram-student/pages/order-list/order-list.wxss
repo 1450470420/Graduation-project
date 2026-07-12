@@ -1,0 +1,16 @@
+.tabs{display:flex;background:#fff;border-bottom:2rpx solid #f0f0f0;position:sticky;top:0;z-index:99}
+.tab{flex:1;text-align:center;padding:24rpx 0;font-size:26rpx;color:#666}
+.tab.active{color:#D32F2F;border-bottom:4rpx solid #D32F2F;font-weight:700}
+.order-item{margin:20rpx}
+.order-header{display:flex;justify-content:space-between;margin-bottom:16rpx}
+.stype{background:#FFEBEE;color:#D32F2F;font-size:22rpx;padding:4rpx 16rpx;border-radius:20rpx}
+.status{font-size:24rpx;font-weight:600}
+.s0{color:#FF9800}.s1{color:#2196F3}.s2{color:#9C27B0}.s3,.s4{color:#4CAF50}.s5{color:#9E9E9E}
+.row{display:flex;margin-bottom:10rpx}
+.label{color:#999;font-size:26rpx;white-space:nowrap}
+.val{color:#333;font-size:26rpx;flex:1}
+.order-footer{display:flex;justify-content:space-between;margin-top:16rpx;padding-top:16rpx;border-top:1rpx solid #f5f5f5}
+.reward{color:#D32F2F;font-size:32rpx;font-weight:700}
+.time{font-size:22rpx;color:#999}
+.loading,.empty-state{text-align:center;padding:100rpx;color:#999}
+.empty-icon{font-size:100rpx;display:block;margin-bottom:20rpx}

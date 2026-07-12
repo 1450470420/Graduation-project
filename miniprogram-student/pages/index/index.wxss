@@ -1,0 +1,27 @@
+.hero{background:linear-gradient(135deg,#D32F2F,#EF5350);margin:20rpx;border-radius:20rpx;padding:30rpx;display:flex;justify-content:space-between;align-items:center;color:#fff}
+.welcome{font-size:34rpx;font-weight:700;display:block}.sub{font-size:24rpx;opacity:.85;display:block;margin-top:8rpx}
+.hero-avatar{width:80rpx;height:80rpx;border-radius:50%;border:4rpx solid rgba(255,255,255,.5)}
+.quick-entry{display:flex;justify-content:space-around;padding:30rpx 20rpx}
+.entry-item{display:flex;flex-direction:column;align-items:center;gap:10rpx}
+.entry-icon{font-size:60rpx}.entry-text{font-size:24rpx;color:#555}
+.section{margin:0 20rpx 20rpx}
+.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16rpx}
+.section-title{font-size:30rpx;font-weight:700;color:#333}
+.section-more{font-size:24rpx;color:#D32F2F}
+.ann-item{display:flex;align-items:center;gap:12rpx;padding:16rpx 0;border-bottom:1rpx solid #f5f5f5}
+.ann-tag{background:#FFEBEE;color:#D32F2F;font-size:20rpx;padding:4rpx 12rpx;border-radius:20rpx;white-space:nowrap}
+.ann-title{font-size:26rpx;color:#333;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.order-card{margin-bottom:16rpx}
+.order-top{display:flex;justify-content:space-between;margin-bottom:12rpx}
+.order-type{background:#FFEBEE;color:#D32F2F;font-size:22rpx;padding:4rpx 16rpx;border-radius:20rpx}
+.order-status{font-size:24rpx;font-weight:600}
+.status-0{color:#FF9800}.status-1{color:#2196F3}.status-2{color:#9C27B0}.status-3{color:#4CAF50}.status-4{color:#4CAF50}.status-5{color:#9E9E9E}
+.order-addr{font-size:26rpx;color:#555;margin-bottom:12rpx;display:block}
+.order-bottom{display:flex;justify-content:space-between}
+.order-reward{color:#D32F2F;font-weight:700;font-size:32rpx}
+.order-time{font-size:22rpx;color:#999}
+.publish-btn-wrap{position:fixed;bottom:120rpx;left:0;right:0;padding:0 40rpx}
+/* view+flex 居中，完全避开 button 组件的内建渲染算法 */
+.publish-btn{display:flex;align-items:center;justify-content:center;width:100%;background:#D32F2F;border-radius:50rpx;height:90rpx;box-shadow:0 4rpx 20rpx rgba(211,47,47,.4);box-sizing:border-box;}
+.publish-btn-text{color:#fff;font-size:30rpx;letter-spacing:2rpx;font-weight:600;}
+.publish-btn-hover{opacity:.85;transform:scale(.98);}

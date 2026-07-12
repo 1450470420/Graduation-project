@@ -1,0 +1,33 @@
+<view class="container">
+  <view wx:if="{{addresses.length===0}}" class="empty-state"><text class="empty-icon">📍</text><text>暂无常用地址，快去添加吧</text></view>
+  <view class="addr-item card" wx:for="{{addresses}}" wx:key="id">
+    <view class="addr-main">
+      <text class="addr-label">{{item.label}}</text>
+      <text class="default-tag" wx:if="{{item.isDefault}}">默认</text>
+    </view>
+    <text class="addr-text">{{item.address}}</text>
+    <view class="addr-actions">
+      <text wx:if="{{!item.isDefault}}" class="default-btn" bindtap="setDefault" data-id="{{item.id}}">设默认</text>
+      <text class="edit-btn" bindtap="openEdit" data-id="{{item.id}}">编辑</text>
+      <text class="del-btn" bindtap="deleteAddr" data-id="{{item.id}}">删除</text>
+    </view>
+  </view>
+  <button class="add-btn" bindtap="openAdd">+ 添加常用地址</button>
+
+  <!-- 添加/编辑地址弹窗 -->
+  <view class="modal-mask" wx:if="{{showAdd||showEdit}}" bindtap="closeAdd"></view>
+  <view class="modal" wx:if="{{showAdd||showEdit}}">
+    <view class="modal-title">{{showEdit?'编辑地址':'添加常用地址'}}</view>
+    <view class="form-item"><text>标签</text>
+      <picker mode="selector" range="{{['宿舍','教室','图书馆','食堂','其他']}}" bindchange="e=>setData({'form.label':['宿舍','教室','图书馆','食堂','其他'][e.detail.value]})">
+        <view class="picker">{{form.label}} ▼</view>
+      </picker>
+    </view>
+    <view class="form-item"><text>地址</text><textarea class="textarea" value="{{form.address}}" bindinput="onInput" data-field="form.address" placeholder="请填写详细地址" auto-height/></view>
+    <view class="modal-btns">
+      <button bindtap="closeAdd" class="btn-cancel">取消</button>
+      <button wx:if="{{showAdd}}" bindtap="submitAdd" class="btn-confirm">确定</button>
+      <button wx:if="{{showEdit}}" bindtap="submitEdit" class="btn-confirm">保存修改</button>
+    </view>
+  </view>
+</view>

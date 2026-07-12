@@ -1,0 +1,56 @@
+<view wx:if="{{loading}}" style="text-align:center;padding:100rpx;color:#999">加载中...</view>
+<view wx:elif="{{!order}}" style="text-align:center;padding:100rpx;color:#999">
+  <text style="font-size:60rpx;display:block;margin-bottom:20rpx">🚧</text>
+  <text style="display:block;margin-bottom:24rpx">加载失败，请返回重试</text>
+</view>
+<view class="container" wx:elif="{{order}}">
+  <!-- 状态标题 -->
+  <view class="status-top s{{order.status}}"><text class="si">{{['⏳','📦','🚚','✅','✅','❌'][order.status]}}</text><view><text class="st">{{['待接单','待取件','配送中','已送达','已完成','已取消'][order.status]}}</text><text class="sn">{{order.orderNo}}</text></view><text class="rw">¥{{order.reward}}</text></view>
+
+  <!-- 地图展示 + 导航按钮 -->
+  <view class="card" wx:if="{{order.pickupLat||order.deliveryLat}}">
+    <text class="map-title">🗺️ 订单地图</text>
+    <map class="order-map"
+      latitude="{{mapLat}}"
+      longitude="{{mapLng}}"
+      markers="{{mapMarkers}}"
+      polyline="{{mapPolyline}}"
+      scale="14"
+      show-location
+    />
+    <!-- 导航按钮 -->
+    <view class="nav-btns">
+      <button class="nav-btn pickup" wx:if="{{order.pickupLat&&order.status<=2}}" bindtap="navigateToPickup">📍 导航到取件点</button>
+      <button class="nav-btn delivery" wx:if="{{order.deliveryLat&&order.status===2}}" bindtap="navigateToDelivery">🎯 导航到送达点</button>
+    </view>
+    <text class="map-hint" wx:if="{{order.distance}}">📍 配送距离：{{order.distance}}km</text>
+  </view>
+
+  <!-- 地址信息 -->
+  <view class="card">
+    <view class="row"><text class="l">📍取件</text><text class="v">{{order.pickupAddress}}</text></view>
+    <view class="row"><text class="l">🏠送至</text><text class="v">{{order.deliveryAddress}}</text></view>
+    <view class="row"><text class="l">📦物品</text><text class="v">{{order.itemInfo}}</text></view>
+    <view class="row" wx:if="{{order.note}}"><text class="l">📝备注</text><text class="v">{{order.note}}</text></view>
+  </view>
+  <view class="card">
+    <view class="row"><text class="l">学生</text><text class="v">{{order.studentName}} {{order.studentPhone}}</text></view>
+    <view class="row"><text class="l">下单时间</text><text class="v">{{order.createTime}}</text></view>
+  </view>
+  <!-- 人脸验证状态（已送达时展示） -->
+  <view class="card face-status-card" wx:if="{{order.status===3}}">
+    <view class="face-row">
+      <text class="face-label">🧑 学生人脸验证</text>
+      <text class="face-badge {{faceVerified?'f-pass':'f-wait'}}">{{faceVerified?'✅ 已验证':'⏳ 等待学生验证'}}</text>
+    </view>
+    <text class="face-tip" wx:if="{{!faceVerified}}">学生需完成人脸验证后才能确认收货，请耐心等待</text>
+    <text class="face-tip" wx:if="{{faceVerified}}">学生已通过人脸验证，等待学生确认收货</text>
+  </view>
+
+  <!-- 状态操作按钮 -->
+  <view class="actions">
+    <button wx:if="{{order.status===1}}" class="btn-green" bindtap="updateStatus" data-status="2">📤 已取件→配送中</button>
+    <button wx:if="{{order.status===2}}" class="btn-green" bindtap="updateStatus" data-status="3">✅ 已送达</button>
+    <button class="btn-chat" bindtap="goChat">💬 联系学生</button>
+  </view>
+</view>
